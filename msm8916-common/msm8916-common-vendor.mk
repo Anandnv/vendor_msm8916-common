@@ -419,5 +419,4 @@ PRODUCT_PACKAGES += \
     shutdownlistener \
     TimeService \
     CNEService \
-    dpmserviceapp \
     qcrilmsgtunnel
