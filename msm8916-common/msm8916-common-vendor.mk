@@ -22,7 +22,7 @@ DEVICE_PACKAGE_OVERLAYS += vendor/asus/msm8916-common/overlay
 
 # ADSP
 PRODUCT_COPY_FILES += \
-    vendor/asus/msm8916-common/proprietary/vendor/bin/adsprpcd:system/vendor/bin/adsprpcd\
+    vendor/asus/msm8916-common/proprietary/bin/adsprpcd:system/bin/adsprpcd\
     vendor/asus/msm8916-common/proprietary/vendor/lib64/libadsprpc.so:system/vendor/lib64/libadsprpc.so\
     vendor/asus/msm8916-common/proprietary/vendor/lib/libadsprpc.so:system/vendor/lib/libadsprpc.so\
     vendor/asus/msm8916-common/proprietary/vendor/lib/libfastcvopt.so:system/vendor/lib/libfastcvopt.so
@@ -59,8 +59,8 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
-    vendor/asus/msm8916-common/proprietary/vendor/bin/btnvtool:system/vendor/bin/btnvtool\
-    vendor/asus/msm8916-common/proprietary/vendor/bin/hci_qcomm_init:system/vendor/bin/hci_qcomm_init\
+    vendor/asus/msm8916-common/proprietary/bin/btnvtool:system/bin/btnvtool\
+    vendor/asus/msm8916-common/proprietary/bin/hci_qcomm_init:system/bin/hci_qcomm_init\
     vendor/asus/msm8916-common/proprietary/vendor/lib/libbtnv.so:system/vendor/lib/libbtnv.so\
     vendor/asus/msm8916-common/proprietary/vendor/lib64/libbtnv.so:system/vendor/lib64/libbtnv.so
 
@@ -119,7 +119,7 @@ PRODUCT_COPY_FILES += \
 
 # DRM
 PRODUCT_COPY_FILES += \
-    vendor/asus/msm8916-common/proprietary/vendor/bin/qseecomd:system/vendor/bin/qseecomd\
+    vendor/asus/msm8916-common/proprietary/bin/qseecomd:system/bin/qseecomd\
     vendor/asus/msm8916-common/proprietary/vendor/lib/libdrmdecrypt.so:system/vendor/lib/libdrmdecrypt.so\
     vendor/asus/msm8916-common/proprietary/vendor/lib/libdrmfs.so:system/vendor/lib/libdrmfs.so\
     vendor/asus/msm8916-common/proprietary/vendor/lib/libdrmtime.so:system/vendor/lib/libdrmtime.so\
@@ -286,7 +286,7 @@ PRODUCT_COPY_FILES += \
 # Qualcomm framework
 PRODUCT_COPY_FILES += \
     vendor/asus/msm8916-common/proprietary/bin/msm_irqbalance:system/bin/msm_irqbalance\
-    vendor/asus/msm8916-common/proprietary/vendor/bin/irsc_util:system/vendor/bin/irsc_util\
+    vendor/asus/msm8916-common/proprietary/bin/irsc_util:system/bin/irsc_util\
     vendor/asus/msm8916-common/proprietary/vendor/lib/libdsi_netctrl.so:system/vendor/lib/libdsi_netctrl.so\
     vendor/asus/msm8916-common/proprietary/vendor/lib64/libdsi_netctrl.so:system/vendor/lib64/libdsi_netctrl.so\
     vendor/asus/msm8916-common/proprietary/vendor/lib/libqcci_legacy.so:system/vendor/lib/libqcci_legacy.so\
@@ -308,16 +308,13 @@ PRODUCT_COPY_FILES += \
     vendor/asus/msm8916-common/proprietary/vendor/lib/libsmemlog.so:system/vendor/lib/libsmemlog.so\
     vendor/asus/msm8916-common/proprietary/vendor/lib64/libsmemlog.so:system/vendor/lib64/libsmemlog.so
 
-#some shit
-    vendor/asus/msm8916-common/proprietary/vendor/bin/tfamode:system/vendor/bin/tfamode \
-
 # Radio
 PRODUCT_COPY_FILES += \
-    vendor/asus/msm8916-common/proprietary/vendor/bin/netmgrd:system/vendor/bin/netmgrd\
-    vendor/asus/msm8916-common/proprietary/vendor/bin/qmuxd:system/vendor/bin/qmuxd\
-    vendor/asus/msm8916-common/proprietary/vendor/bin/radish:system/vendor/bin/radish\
+    vendor/asus/msm8916-common/proprietary/bin/netmgrd:system/bin/netmgrd\
+    vendor/asus/msm8916-common/proprietary/bin/qmuxd:system/bin/qmuxd\
+    vendor/asus/msm8916-common/proprietary/bin/radish:system/bin/radish\
     vendor/asus/msm8916-common/proprietary/bin/rfs_access:system/bin/rfs_access\
-    vendor/asus/msm8916-common/proprietary/vendor/bin/rmt_storage:system/vendor/bin/rmt_storage\
+    vendor/asus/msm8916-common/proprietary/bin/rmt_storage:system/bin/rmt_storage\
     vendor/asus/msm8916-common/proprietary/framework/qcnvitems.jar:system/framework/qcnvitems.jar\
     vendor/asus/msm8916-common/proprietary/framework/qcrilhook.jar:system/framework/qcrilhook.jar\
     vendor/asus/msm8916-common/proprietary/etc/permissions/qcnvitems.xml:system/etc/permissions/qcnvitems.xml \
@@ -343,10 +340,10 @@ PRODUCT_COPY_FILES += \
 
 # IMS
 PRODUCT_COPY_FILES += \
-    vendor/asus/msm8916-common/proprietary/vendor/bin/imscmservice:system/vendor/bin/imscmservice \
-    vendor/asus/msm8916-common/proprietary/vendor/bin/imsdatadaemon:system/vendor/bin/imsdatadaemon \
-    vendor/asus/msm8916-common/proprietary/vendor/bin/imsqmidaemon:system/vendor/bin/imsqmidaemon \
-    vendor/asus/msm8916-common/proprietary/vendor/bin/ims_rtp_daemon:system/vendor/bin/ims_rtp_daemon \
+    vendor/asus/msm8916-common/proprietary/bin/imscmservice:system/bin/imscmservice \
+    vendor/asus/msm8916-common/proprietary/bin/imsdatadaemon:system/bin/imsdatadaemon \
+    vendor/asus/msm8916-common/proprietary/bin/imsqmidaemon:system/bin/imsqmidaemon \
+    vendor/asus/msm8916-common/proprietary/bin/ims_rtp_daemon:system/bin/ims_rtp_daemon \
     vendor/asus/msm8916-common/proprietary/etc/permissions/imscm.xml:system/etc/permissions/imscm.xml \
     vendor/asus/msm8916-common/proprietary/etc/permissions/qti_permissions.xml:system/etc/permissions/qti_permissions.xml \
     vendor/asus/msm8916-common/proprietary/vendor/lib64/lib-dplmedia.so:system/vendor/lib64/lib-dplmedia.so \
@@ -382,7 +379,7 @@ PRODUCT_COPY_FILES += \
 
 # Time services
 PRODUCT_COPY_FILES += \
-    vendor/asus/msm8916-common/proprietary/vendor/bin/time_daemon:system/vendor/bin/time_daemon\
+    vendor/asus/msm8916-common/proprietary/bin/time_daemon:system/bin/time_daemon\
     vendor/asus/msm8916-common/proprietary/vendor/lib/libTimeService.so:system/vendor/lib/libTimeService.so\
     vendor/asus/msm8916-common/proprietary/vendor/lib64/libTimeService.so:system/vendor/lib64/libTimeService.so
 
