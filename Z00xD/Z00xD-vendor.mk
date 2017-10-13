@@ -37,11 +37,12 @@ PRODUCT_COPY_FILES += \
     vendor/asus/Z00xD/proprietary/bin/LaserOn:system/bin/LaserOn \
     vendor/asus/Z00xD/proprietary/bin/LaserFocus_Status:system/bin/LaserFocus_Status \
     vendor/asus/Z00xD/proprietary/bin/ZE500KG_afCali:system/bin/ZE500KG_afCali \
-    vendor/asus/Z00xD/proprietary/bin/mm-qcamera-daemon:system/bin/mm-qcamera-daemon
+    vendor/asus/Z00xD/proprietary/bin/mm-qcamera-daemon:system/vendor/bin/mm-qcamera-daemon
 
 # Camera
 PRODUCT_COPY_FILES += \
-    vendor/asus/Z00xD/proprietary/lib/hw/camera.msm8916.so:system/lib/hw/camera.vendor.msm8916.so \
+    vendor/asus/Z00xD/proprietary/lib/hw/camera.vendor.msm8916.so:system/vendor/lib/hw/camera.vendor.msm8916.so \
+    vendor/asus/Z00xD/proprietary/lib/hw/camera.msm8916.so:system/lib/hw/camera.msm8916.so \
     vendor/asus/Z00xD/proprietary/lib/libarcsoft_beautyshot.so:system/lib/libarcsoft_beautyshot.so \
     vendor/asus/Z00xD/proprietary/lib/libarcsoft_face_tracking.so:system/lib/libarcsoft_face_tracking.so \
     vendor/asus/Z00xD/proprietary/lib/libarcsoft_hdr.so:system/lib/libarcsoft_hdr.so \
