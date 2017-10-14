@@ -41,7 +41,6 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_COPY_FILES += \
-    vendor/asus/Z00xD/proprietary/lib/hw/camera.msm8916.so:system/lib/hw/camera.vendor.msm8916.so \
     vendor/asus/Z00xD/proprietary/lib/libarcsoft_beautyshot.so:system/lib/libarcsoft_beautyshot.so \
     vendor/asus/Z00xD/proprietary/lib/libarcsoft_face_tracking.so:system/lib/libarcsoft_face_tracking.so \
     vendor/asus/Z00xD/proprietary/lib/libarcsoft_hdr.so:system/lib/libarcsoft_hdr.so \
@@ -60,7 +59,6 @@ PRODUCT_COPY_FILES += \
     vendor/asus/Z00xD/proprietary/lib/libsarcsoft_gallery.so:system/lib/libsarcsoft_gallery.so \
     vendor/asus/Z00xD/proprietary/lib/libsarcsoft.so:system/lib/libsarcsoft.so \
     vendor/asus/Z00xD/proprietary/lib/libsphere3.so:system/lib/libsphere3.so \
-    vendor/asus/Z00xD/proprietary/lib/libmm-qcamera.so:system/lib/libmm-qcamera.so \
     vendor/asus/Z00xD/proprietary/lib/libmmcamera_interface.so:system/lib/libmmcamera_interface.so \
     vendor/asus/Z00xD/proprietary/lib/libmmjpeg_interface.so:system/lib/libmmjpeg_interface.so \
     vendor/asus/Z00xD/proprietary/lib/libmm-omxcore.so:system/lib/libmm-omxcore.so \
