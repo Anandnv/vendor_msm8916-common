@@ -24,7 +24,9 @@ DEVICE_PACKAGE_OVERLAYS += vendor/asus/msm8916-common/overlay
 PRODUCT_COPY_FILES += \
    vendor/asus/msm8916-common/proprietary/bin/mm-qcamera-daemon:system/vendor/bin/mm-qcamera-daemon \
    vendor/asus/msm8916-common/proprietary/lib/hw/camera.vendor.msm8916.so:system/vendor/lib/hw/camera.vendor.msm8916.so \
-   vendor/asus/msm8916-common/proprietary/lib/hw/camera.msm8916.so:system/lib/hw/camera.msm8916.so
+   vendor/asus/msm8916-common/proprietary/lib/hw/camera.msm8916.so:system/lib/hw/camera.msm8916.so \
+   vendor/asus/msm8916-common/proprietary/lib/libunwind.so:system/lib/libunwind.so \
+   vendor/asus/msm8916-common/proprietary/lib64/libunwind.so:system/lib64/libunwind.so
 
 # ADSP
 PRODUCT_COPY_FILES += \
