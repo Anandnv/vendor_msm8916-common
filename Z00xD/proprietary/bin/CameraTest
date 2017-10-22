@@ -7,8 +7,9 @@
 
 TEST_TIMES=-1
 INDEX=0
-COUNT=50
-OPEN_COUNT=12
+COUNT=60
+OPEN_COUNT=120
+CLOSE_COUNT=60
 REC=1
 LOG_FILE="/data/.tmp/CameraTest.log"
 
@@ -92,26 +93,10 @@ case $1 in
 		case $2 in
 		"0")
 		enableTouch;
-			#echo "Preparing to close camera(Back camera)...!"
-			while [ $INDEX -lt $3 ]
-			do
-			sh /system/bin/input keyevent 3
+			sh /system/bin/am force-stop com.android.camera2
 			sleep 1
-				INDEX=$(($INDEX+1))
-				result=`cat /data/.tmp/ATD_START 2> /dev/null`
-				if [ $result == '0' ]; then
-					#echo "Close camera success!!"
-					#setprop com.asus.disableevent 0
-					# echo "Enable touch success!!"
-					#echo 0 > /data/.tmp/ATD_INFINITY
-					#echo "Cancel focus setting!!"
-					echo "1"				
-					exit 0
-				fi
-				#sleep 1
-			done
-			#echo "Close camera failed!!"
-			echo "0"
+			echo "1"
+			exit 0
 		;;
 		"1")
 		disableTouch;
@@ -127,18 +112,18 @@ case $1 in
 			INDEX=$(($INDEX+1))
 			result=`cat /data/.tmp/ATD_START 2> /dev/null`
 			if [ "$result" == "$REC" ]; then
-				sleep 0.5
+				sleep 0.3
 				echo "1"
 				#date '+%M:%S'
 				exit 0
 			fi
 			while [ $INDEX -lt $OPEN_COUNT ]
  			do
-			if [ "$INDEX % 4" -eq "0" ]; then
+			if [ "$INDEX % 40" -eq "0" ]; then
 				sh /system/bin/am force-stop com.android.camera2 # fix resume mode back keyevent not usable
 				sh /system/bin/am start -n com.android.camera2/com.android.camera.CameraLauncher -e commandID 0 >> /dev/null
 			fi
-			sleep 1
+			sleep 0.2
 				INDEX=$(($INDEX+1))
 				result=`cat /data/.tmp/ATD_START 2> /dev/null`
 				if [ "$result" == "$REC" ]; then
@@ -146,7 +131,7 @@ case $1 in
 					#setprop com.asus.disableevent 1
 					# echo "Disable touch success!!"
 					#setprop camera.infinity.set 0
-					sleep 0.5
+					sleep 0.3
 					echo "1"
 					#date '+%M:%S'
 					exit 0
@@ -165,24 +150,10 @@ case $1 in
 		case $2 in
 		"0")
 		enableTouch;
-			#echo "Preparing to close camera(Front camera)...!"
-			while [ $INDEX -lt $3 ]
-			do
-			sh /system/bin/input keyevent 3
+			sh /system/bin/am force-stop com.android.camera2
 			sleep 1
-				INDEX=$(($INDEX+1))
-				result=`cat /data/.tmp/ATD_START 2> /dev/null`
-				if [ $result == '0' ]; then
-					#echo "Close camera success!!"
-					#setprop com.asus.disableevent 0
-					# echo "Enable touch success!!"
-					echo "1"					
-					exit
-				fi
-				#sleep 1
-			done
-			#echo "Close camera failed!!"
-			echo "0"
+			echo "1"
+			exit 0
 		;;
 		"1")
 		disableTouch;
@@ -198,25 +169,25 @@ case $1 in
 			INDEX=$(($INDEX+1))
 			result=`cat /data/.tmp/ATD_START 2> /dev/null`
 			if [ "$result" == "$REC" ]; then
-				sleep 0.5
+				sleep 0.3
 				echo "1"
 				#date '+%M:%S'
 				exit
 			fi
 			while [ $INDEX -lt $OPEN_COUNT ]
 			do
-			if [ "$INDEX % 4" -eq "0" ]; then
+			if [ "$INDEX % 40" -eq "0" ]; then
 				sh /system/bin/am force-stop com.android.camera2 # fix resume mode back keyevent not usable
 				sh /system/bin/am start -n com.android.camera2/com.android.camera.CameraLauncher -e commandID 1 >> /dev/null
 			fi
-			sleep 1
+			sleep 0.2
 				INDEX=$(($INDEX+1))
 				result=`cat /data/.tmp/ATD_START 2> /dev/null`
 				if [ "$result" == "$REC" ]; then
 					#echo "Start preview success!!"
 					#setprop com.asus.disableevent 1
 					# echo "Disable touch success!!"
-					sleep 0.5
+					sleep 0.3
 					echo "1"
 					#date '+%M:%S'
 					exit
@@ -293,10 +264,10 @@ case $1 in
 				;;
 			#ZE500KL
 			"ASUS_Z00ED")
-				sh /system/bin/input keyevent 80
+				sh /system/bin/am broadcast -a atd.camera.focuscapture -f 0x10000000 > /dev/null
 				;;
 			*)
-				sh /system/bin/input keyevent 80
+				sh /system/bin/am broadcast -a atd.camera.focuscapture -f 0x10000000 > /dev/null
 				;;
 		esac		
 		sleep 0.2
@@ -305,7 +276,7 @@ case $1 in
 		do
 			INDEX=$(($INDEX+1))
 			if [ "$INDEX % 30" -eq "0" ]; then
-				sh /system/bin/input keyevent 80
+				sh /system/bin/am broadcast -a atd.camera.focuscapture -f 0x10000000 > /dev/null
 				sleep 0.2
 			fi
 			result=`cat /data/.tmp/ATD_PICTURE 2> /dev/null`
@@ -322,12 +293,22 @@ case $1 in
 	;;
 
 	"3")
-		echo "Set focus mode!"
-		echo $2 > /data/.tmp/ATD_INFINITY
-		sleep 1
-		echo "1"
-	;;	
-
+        case $2 in
+        "0")
+		    #echo "Set focus mode!"
+		    #echo $2 > /data/.tmp/ATD_INFINITY
+		    sh /system/bin/am broadcast -a atd.camera.infinity -f 0x10000000 > /dev/null
+	        ;;
+        "1")
+            sh /system/bin/am broadcast -a atd.camera.autofocus -f 0x10000000 > /dev/null
+            ;;
+        *)
+            sh /system/bin/am broadcast -a atd.camera.infinity -f 0x10000000 > /dev/null
+            ;;
+        esac
+        sleep 0.5
+        echo "1"	
+    ;;
 	"4")
 		# echo "Take picture...!"
     		echo $2 > /data/.tmp/ATD_FILE
@@ -337,14 +318,14 @@ case $1 in
 		# sleep 2
 		#date '+%M:%S'
 		#sh /system/bin/input keyevent 17
-		sh /system/bin/input keyevent 27
+		sh /system/bin/am broadcast -a atd.camera.capture -f 0x10000000 > /dev/null
 		sleep 0.2
 		while [ $INDEX -lt $COUNT ]
 		do
 			INDEX=$(($INDEX+1))
 			if [ "$INDEX % 30" -eq "0" ]; then
 				#sh /system/bin/input keyevent 17
-				sh /system/bin/input keyevent 27
+				sh /system/bin/am broadcast -a atd.camera.capture -f 0x10000000 > /dev/null
 				sleep 0.2
 			fi
 			result=`cat /data/.tmp/ATD_PICTURE 2> /dev/null`
@@ -362,16 +343,21 @@ case $1 in
 	;;
 
 	"5")
+        setprop debug.snapshot.raw 1
+        setprop persist.camera.raw_yuv 1
+        setprop persist.camera.zsl_raw 1
+        #setprop persist.camera.dumpimg 1
+
     	echo $2 > /data/.tmp/ATD_FILE
     	echo 0 > /data/.tmp/ATD_PICTURE
 		
-		sh /system/bin/input keyevent 27
+		sh /system/bin/am broadcast -a atd.camera.capture -f 0x10000000 > /dev/null
 		sleep 0.2
 		while [ $INDEX -lt $COUNT ]
 		do
 			INDEX=$(($INDEX+1))
 			if [ "$INDEX % 30" -eq "0" ]; then
-				sh /system/bin/input keyevent 27
+				sh /system/bin/am broadcast -a atd.camera.capture -f 0x10000000 > /dev/null
 				sleep 0.2
 			fi
 			result=`cat /data/.tmp/ATD_PICTURE 2> /dev/null`
@@ -393,6 +379,65 @@ case $1 in
 
 		get_golden_data $2
 
+	;;
+
+	"9")
+		# echo "Preparing to auto focus & take picture...!"
+    		echo $2 > /data/.tmp/ATD_FILE
+    		echo 0 > /data/.tmp/ATD_PICTURE
+		echo 0 > /data/.tmp/ATD_INFINITY
+		#date '+%M:%S'
+		sh /system/bin/am broadcast -a atd.camera.flashfocuscapture -f 0x10000000 > /dev/null
+		sleep 0.2
+		while [ $INDEX -lt $COUNT ]
+		do
+			INDEX=$(($INDEX+1))
+			if [ "$INDEX % 30" -eq "0" ]; then
+				sh /system/bin/am broadcast -a atd.camera.flashfocuscapture -f 0x10000000 > /dev/null
+				sleep 0.2
+			fi
+			result=`cat /data/.tmp/ATD_PICTURE 2> /dev/null`
+			if [ "$result" == "$REC" ]; then
+				#echo "Picture taken success!!"
+				echo "1"
+				#date '+%M:%S'
+				exit
+			fi
+			sleep 0.2
+		done
+		#echo "Picture taken failed!!"
+		echo "0"
+	;;
+
+	"10")
+		# echo "Take picture...!"
+    		echo $2 > /data/.tmp/ATD_FILE
+    		echo 0 > /data/.tmp/ATD_PICTURE
+		
+		# sh /system/bin/input keyevent 80
+		# sleep 2
+		#date '+%M:%S'
+		sh /system/bin/am broadcast -a atd.camera.flashcapture -f 0x10000000 > /dev/null
+		sleep 0.2
+		while [ $INDEX -lt $COUNT ]
+		do
+			INDEX=$(($INDEX+1))
+			if [ "$INDEX % 30" -eq "0" ]; then
+				sh /system/bin/am broadcast -a atd.camera.flashcapture -f 0x10000000 > /dev/null
+				sleep 0.2
+			fi
+			result=`cat /data/.tmp/ATD_PICTURE 2> /dev/null`
+			if [ "$result" == "$REC" ]; then
+				#echo "Picture taken success!!"
+				echo "1"
+				#date '+%M:%S'
+				exit
+			fi
+			sleep 0.2
+		done
+		
+		#echo "Picture taken failed!!"
+		echo "0"
 	;;
 
 	*)
